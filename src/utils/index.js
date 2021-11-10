@@ -44,7 +44,6 @@ export const sortByValues = (list,parameter,orderType) =>{
 
   })
 
-  console.log(data)
   return data
 
 }
@@ -52,14 +51,30 @@ export const sortByValues = (list,parameter,orderType) =>{
 
 export const applyFilters = (list,filters,elementsPerPage, page)=>{
 
+  
+  let data = [...list]
+  
+  //apply filters
+  if(filters.orderOption.name){
+    data = sortByValues(data,filters.orderOption.name,filters.orderOption.type)
+  }
+
+
+  const lengthData = Math.ceil((data.length - 1) / elementsPerPage)
+  //send data filtered only the currentPage
+  
   const init = (page * elementsPerPage) - elementsPerPage
+  const filtered = data.splice(init,20)
 
-  const data = [...list].splice(init,20)
-
-  return data
+  return [filtered,lengthData]
   
 }
 
+
+export const getPowerstats = (list) =>{
+
+  return new Set(Object.keys(list[0].powerstats))
+}
 
 export const getOptions = async (list,parameter) =>{
 

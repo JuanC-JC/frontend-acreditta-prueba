@@ -1,0 +1,35 @@
+.search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 5px;
+  border: solid 0.8px #b8b5b5;
+  padding: 5px;
+  padding-right: 20px;
+  overflow: hidden;
+
+  button {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 32 px;
+    height: 28 px;
+    background-color: rgb(179, 28, 28);
+    // background-image: url(./static/images/63cd38d….svg);
+    
+    border: none;
+    margin-left: 10 px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  input {
+    width: 100%;
+    margin-left: 5px;
+    border: none;
+    padding: 5px 10px;
+    outline: none;
+    color: black;
+  }
+}

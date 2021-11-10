@@ -6,11 +6,10 @@ import {
   setPage,
   setFilter,
   paginationQuantity,
-  loadingData,
-  addFilterOption
+  loadingData
 } from "../types";
-
 import { applyFilters, sortByValues,getPowerstats } from "../utils";
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -21,7 +20,6 @@ const reducer = (state, action) => {
         loading: false,
         error: null,
         pages: Math.ceil((action.payload.length - 1) / state.elementsPerPage),
-        filteredPages: Math.ceil((action.payload.length - 1) / state.elementsPerPage),
         powerstatsOptions: [...getPowerstats(action.payload)]
       };
     case loadingData:
@@ -40,14 +38,6 @@ const reducer = (state, action) => {
         ...state,
         paginationQuantity: action.payload,
       };
-    case addFilterOption:
-      return{
-        ...state,
-        filters:{
-          ...state.filters,
-          orderOption: action.payload
-        },
-      };
     case setFilter:
       return {
         ...state,
@@ -57,21 +47,15 @@ const reducer = (state, action) => {
         loading: false
       };
     case filterData:
-
-      const [filteredData,filteredPages] = applyFilters(
+      return {
+        ...state,
+        loading:false,
+        filteredData: applyFilters(
           state.characters,
           state.filters,
           state.elementsPerPage,
           state.currentPage
-        )
-
-
-
-      return {
-        ...state,
-        loading:false,
-        filteredData: filteredData,
-        filteredPages: filteredPages,
+        ),
       };
     case errorData:
       return {
@@ -89,5 +73,4 @@ const reducer = (state, action) => {
   }
 };
 
-
-export default reducer
+export default reducer;

@@ -1,33 +1,60 @@
-import {setData,errorData, sortData, filterData, setPage, paginationQuantity} from '../types'
+import {
+  setData,
+  errorData,
+  sortData,
+  filterData,
+  setPage,
+  paginationQuantity,
+  loadingData,
+  addFilterOption
+} from "../types";
 
-export const addData = payload => ({
-  type:setData,
-  payload
-})
 
-export const SetErrorData = payload => ({
-  type:errorData,
-  payload
-})
+export const addData = (payload) => ({
+  type: setData,
+  payload,
+});
 
-export const setSortData = payload => ({
+export const setLoading = (payload) => ({
+  type: loadingData,
+  payload,
+});
+
+export const SetErrorData = (payload) => ({
+  type: errorData,
+  payload,
+});
+
+export const setSortData = (payload) => ({
   type: sortData,
-  payload
-})
+  payload,
+});
 
-export const setCurrentPage = payload => ({
+export const setCurrentPage = (payload) => ({
   type: setPage,
-  payload
-})
+  payload,
+});
 
-export const applyFilterData = payload => ({
+export const applyFilterData = (payload) => ({
   type: filterData,
+  payload,
+});
+
+export const setFilterOption = (payload) => ({
+  type: addFilterOption,
   payload
 })
 
+export const setFilterData = (payload) => (dispatch) =>{
 
-export const setPaginationQuantity = payload =>({
+  dispatch(setLoading(true))
+
+  setTimeout(() => {
+    dispatch(applyFilterData())
+  }, 100);
+}
+
+export const setPaginationQuantity = (payload) => ({
   type: paginationQuantity,
-  payload
-})
-
+  payload,
+});

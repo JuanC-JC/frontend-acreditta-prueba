@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import "../styles/app.scss";
 import Characters from "../components/Characters";
-import { useParams } from "react-router";
 import Pagination from "../components/Pagination";
+import Header from "../components/Header";
+import Menu from "../components/Menu";
+import '../styles/home.scss';
 
 function Home(props) {
   const { setSortData, setPaginationQuantity } = props;
@@ -22,17 +23,16 @@ function Home(props) {
 
   return (
     <div className="home">
-      <Characters />
-      <button
-        onClick={() => {
-          console.log("click");
-          setSortData();
-        }}
-      >
-        Filter
-      </button>
 
-      <Pagination />
+      {/* <Menu/> */}
+
+
+      <Header/>
+
+      <div className="hero">
+        <Characters />
+        <Pagination />
+      </div>
     </div>
   );
 }

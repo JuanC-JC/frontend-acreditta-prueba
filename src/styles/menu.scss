@@ -1,0 +1,50 @@
+.menu {
+  &__powerstatsOptions {
+  }
+
+  ul {
+    list-style: none;
+  }
+}
+
+.menu__powerstatOption {
+  padding: 10px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  padding: 15px 0;
+  background: #22292f;
+  cursor: pointer;
+
+
+
+  &:hover{
+    &::after{
+      position: absolute;
+      content: "";
+      width: 40%;
+      height: 2px;
+      bottom: 2px;
+      background: var(--border-main-color);
+    }
+  }
+
+  &--selected{
+    &::after{
+      position: absolute;
+      content: "";
+      width: 70%;
+      height: 2px;
+      bottom: 2px;
+      background: var(--border-main-color);
+    }
+  }
+
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { connect } from "react-redux";
 import { buildPagination } from "../utils";
 import * as actions from '../actions'
@@ -16,18 +16,22 @@ function Pagination(props) {
   return( 
     <div className="pagination">
 
-      <div className="previous">{"<"}</div>
-
+      <div 
+        className="previous pagination__button"
+        onClick={()=>{
+          if(currentPage > 1){
+            navigate(`/${currentPage-1}`)
+          }
+        }}
+      >{"<"}</div>
 
       <div className="indexes">
         {
           indexPagination.map(index=>{
-
-            console.log(index,currentPage)
             return(
               <div 
                 key={index} 
-                className={`${index == currentPage ? "active" : ''}`}
+                className={`${index === currentPage ? "active" : ''}`}
                 onClick={()=>{
                   navigate(`/${index}`)
                 }}
@@ -37,7 +41,15 @@ function Pagination(props) {
             })
         }
       </div>
-      <div className="next">{">"}</div>
+
+      <div 
+        className="next pagination__button"
+        onClick={()=>{
+          if(currentPage < pages){
+            navigate(`/${currentPage+1}`)
+          }
+        }}
+        >{">"}</div>
     </div>);
 }
 
