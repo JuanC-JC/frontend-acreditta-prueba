@@ -7,7 +7,7 @@ import SubMenu from './menus/subMenu';
 
 function Menu (props) {
 
-  const {powerstatsOptions,filters,setSortOption,setFilterData,toggleMenu,appearanceOptions} = props
+  const {powerstatsOptions,filters,setSortOption,applyFilterData,toggleMenu,appearanceOptions} = props
 
   const [powerOption, setPowerOption] = useState('')
 
@@ -21,7 +21,7 @@ function Menu (props) {
       name:e.target.getAttribute('name'),
       type:'desc'
     })
-    setFilterData()
+    applyFilterData()
     
   }
 

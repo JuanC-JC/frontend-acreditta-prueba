@@ -19,6 +19,7 @@ function Characters(props) {
     setErrorData,
     error,
     setFilterData,
+    applyFilterData,
     pages
   } = props;
 
@@ -28,19 +29,18 @@ function Characters(props) {
     if (page && page <= pages) {
       setCurrentPage(page);
     }else{
-      // setCurrentPage(1);
       navigate('/1')
     }
-    setFilterData()
+    applyFilterData()
 
-  }, [page,pages,setCurrentPage,setFilterData]);
+  }, [navigate,page,pages,setCurrentPage,applyFilterData]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await simulateQuery();
         addData(data);
-        setFilterData()
+        applyFilterData()
       } catch (e) {
         setErrorData(e);
       }
