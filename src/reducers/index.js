@@ -4,17 +4,22 @@ import {
   sortData,
   filterData,
   setPage,
-  setFilter,
   paginationQuantity,
   loadingData,
-  addFilterOption
+  sortOption,
+  filterOption
 } from "../types";
 
-import { applyFilters, sortByValues,getPowerstats } from "../utils";
+import { applyFilters, sortByValues,getPowerstats, getAppearanceStats } from "../utils";
 
 const reducer = (state, action) => {
   switch (action.type) {
     case setData:
+
+    const appearanceOptions = getAppearanceStats(action.payload)
+
+    const appearanceFilters = Object.fromEntries(Object.keys(appearanceOptions).map(key=>[key,[]]))
+
       return {
         ...state,
         characters: action.payload,
@@ -22,7 +27,12 @@ const reducer = (state, action) => {
         error: null,
         pages: Math.ceil((action.payload.length - 1) / state.elementsPerPage),
         filteredPages: Math.ceil((action.payload.length - 1) / state.elementsPerPage),
-        powerstatsOptions: [...getPowerstats(action.payload)]
+        powerstatsOptions: getPowerstats(action.payload),
+        appearanceOptions: appearanceOptions,
+        filters:{
+          ...state.filters,
+          filterOptions: appearanceFilters
+        }
       };
     case loadingData:
       return {
@@ -40,7 +50,7 @@ const reducer = (state, action) => {
         ...state,
         paginationQuantity: action.payload,
       };
-    case addFilterOption:
+    case sortOption:
       return{
         ...state,
         filters:{
@@ -48,13 +58,29 @@ const reducer = (state, action) => {
           orderOption: action.payload
         },
       };
-    case setFilter:
+    case filterOption:
+
+      const indexOption = state.filters.filterOptions[action.payload.type].indexOf(action.payload.value)
+
+      const newFilters = [
+        ...state.filters.filterOptions[action.payload.type]
+      ]
+
+      if(action.payload.checked){
+        newFilters.push(action.payload.value)
+      }else{
+        newFilters.splice(indexOption,1)
+      }
+
       return {
         ...state,
         filters: {
           ...state.filters,
+          filterOptions:{
+            ...state.filters.filterOptions,
+            [action.payload.type] : newFilters
+          }
         },
-        loading: false
       };
     case filterData:
 
@@ -64,8 +90,6 @@ const reducer = (state, action) => {
           state.elementsPerPage,
           state.currentPage
         )
-
-
 
       return {
         ...state,

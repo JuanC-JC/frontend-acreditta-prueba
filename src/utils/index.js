@@ -12,7 +12,6 @@ export const simulateQuery = () =>{
   })
 }
 
-
 export const sortByValues = (list,parameter,orderType) =>{
 
   const data = [...list]
@@ -48,20 +47,32 @@ export const sortByValues = (list,parameter,orderType) =>{
 
 }
 
-
 export const applyFilters = (list,filters,elementsPerPage, page)=>{
 
   
   let data = [...list]
-  
+
   //apply filters
   if(filters.orderOption.name){
     data = sortByValues(data,filters.orderOption.name,filters.orderOption.type)
   }
 
 
+  Object.entries(filters.filterOptions).forEach(filter=>{
+
+    const filterName = filter[0]
+    const filterList = filter[1]
+
+    if(filterList.length>0){
+      data = data.filter(character=>  filterList.includes(character.appearance[filterName]) )
+    }
+
+  })
+
+  
   const lengthData = Math.ceil((data.length - 1) / elementsPerPage)
   //send data filtered only the currentPage
+  console.log(data.map(c=>c.appearance), lengthData)
   
   const init = (page * elementsPerPage) - elementsPerPage
   const filtered = data.splice(init,20)
@@ -70,10 +81,9 @@ export const applyFilters = (list,filters,elementsPerPage, page)=>{
   
 }
 
-
 export const getPowerstats = (list) =>{
 
-  return new Set(Object.keys(list[0].powerstats))
+  return [...new Set(Object.keys(list[0].powerstats))]
 }
 
 export const getOptions = async (list,parameter) =>{
@@ -119,3 +129,34 @@ export const buildPagination = (pages,currentPage,pagination)=>{
     return Array.from({length: pagination}, (_, i) => i + puntoInicial )
   }
 }
+
+export const getAppearanceStats = (list)=>{
+
+  const appearanceKeys = Object.keys(list[0].appearance).map(key=>([key,new Set()]))
+
+  const stats = Object.fromEntries(appearanceKeys)
+
+  
+
+  list.forEach(character=>{
+    
+    Object.keys(stats).forEach((stat)=>{
+
+      if(!Array.isArray(character.appearance[stat])){
+        // stats[stat].add(character.appearance[stat][0])
+        stats[stat].add(character.appearance[stat])
+      }
+    })
+  })
+
+  Object.keys(stats).forEach((stat)=>{
+    stats[stat] = [...stats[stat]]
+  })
+
+
+  return stats
+}
+
+
+
+// console.log(getAppearanceStats(data))

@@ -1,12 +1,12 @@
 import {
   setData,
   errorData,
-  sortData,
   filterData,
   setPage,
   paginationQuantity,
   loadingData,
-  addFilterOption
+  filterOption,
+  sortOption
 } from "../types";
 
 
@@ -25,15 +25,15 @@ export const SetErrorData = (payload) => ({
   payload,
 });
 
-export const setSortData = (payload) => ({
-  type: sortData,
-  payload,
-});
-
 export const setCurrentPage = (payload) => ({
   type: setPage,
   payload,
 });
+
+export const setSortOption = (payload) => ({
+  type: sortOption,
+  payload
+})
 
 export const applyFilterData = (payload) => ({
   type: filterData,
@@ -41,7 +41,7 @@ export const applyFilterData = (payload) => ({
 });
 
 export const setFilterOption = (payload) => ({
-  type: addFilterOption,
+  type:filterOption,
   payload
 })
 

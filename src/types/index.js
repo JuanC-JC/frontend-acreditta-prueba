@@ -9,4 +9,5 @@ export const paginationQuantity = 'paginationQuantity'
 
 //filter types
 export const setFilter = 'setFilter'
-export const addFilterOption = 'addFilterOption'
+export const filterOption = 'filterOption'
+export const sortOption = 'sortOption'

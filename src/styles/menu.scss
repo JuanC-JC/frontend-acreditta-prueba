@@ -5,11 +5,51 @@
   ul {
     list-style: none;
   }
+
+  
 }
 
-.menu__powerstatOption {
-  padding: 10px;
+.menu__subBlock {
+  margin-top: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+
+  &--open{
+    &>.menu__infoOptionBlock{
+      transition: all .4s;
+      max-height: 1000px;
+    }
+  }
 }
+
+.menu__optionBlock {
+  margin-top: 10px;
+  cursor: pointer;
+  
+  &--open{
+    &>.menu__infoOptionBlock{
+      transition: all .4s;
+      max-height: 1000px;
+    }
+  }
+
+}
+
+
+.menu__title{
+  margin: 20px 0;
+  padding: 5px 0;
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu__infoOptionBlock{
+  max-height: 0;
+  overflow: hidden;
+  transition: all .4s;
+}
+
 
 .button {
   display: flex;

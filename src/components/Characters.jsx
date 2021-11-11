@@ -5,8 +5,11 @@ import * as actions from "../actions";
 import Card from "../components/card";
 import { useParams } from "react-router";
 import Pagination from "./Pagination";
+import { useNavigate } from "react-router";
 
 function Characters(props) {
+
+  const navigate = useNavigate()
 
   const {
     setCurrentPage,
@@ -15,20 +18,22 @@ function Characters(props) {
     loading,
     setErrorData,
     error,
-    setFilterData
+    setFilterData,
+    pages
   } = props;
 
   const { page } = useParams();
 
   useEffect(() => {
-    if (page) {
+    if (page && page <= pages) {
       setCurrentPage(page);
     }else{
-      setCurrentPage(1);
+      // setCurrentPage(1);
+      navigate('/1')
     }
     setFilterData()
 
-  }, [page,setCurrentPage,setFilterData]);
+  }, [page,pages,setCurrentPage,setFilterData]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,6 +69,7 @@ const mapStateToProps = (state) => {
     loading: state.loading,
     error: state.error,
     filters: state.filters,
+    pages: state.filteredPages,
     filteredData: state.filteredData
   };
 };

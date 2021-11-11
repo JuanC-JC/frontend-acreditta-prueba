@@ -58,7 +58,7 @@ const mapStateToProps = (state) => {
     filteredData: state.filteredData,
     elementsPerPage: state.elementsPerPage,
     currentPage: state.currentPage,
-    pages: state.pages,
+    pages: state.filteredPages,
     paginationQuantity: state.paginationQuantity
   };
 };

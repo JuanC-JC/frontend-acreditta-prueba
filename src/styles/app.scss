@@ -4,12 +4,12 @@
   color: var(--text-color);
 }
 
-// .home {
-//   background-color: var(--bg-color);
-//   min-height: 100vh;
-//   padding-bottom: 20px;
-// }
 
+#root{
+  height:100vh;
+  display: flex;
+  flex-direction:column;
+}
 
 h1{
   text-align: center;

@@ -16,6 +16,7 @@ const initialState ={
   powerstatsOptions:[],
   currentPage:1,
   elementsPerPage:20,
+  appearanceOptions:{},
   paginationQuantity: window.innerWidth <= 768 ? 5 : 10,
   filteredData:[],
   loading:true,
@@ -24,7 +25,7 @@ const initialState ={
   filters:{
     search:null,
     orderOption:{}, //order {name,type}
-    filterOptions:[], // filter
+    filterOptions:{}, // filter
   },
 }
 
