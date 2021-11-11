@@ -17,11 +17,11 @@ export default function Header () {
 
     return (
     <div className='header'>
-      <img className='header__logo' src={logo} alt="" />
+      <h1>HeroAPI</h1>
       <img onClick={toggleMenu} className='header__menuBurguer' src={menuBurger} alt="" />
 
-
       <FilterMenu isOpen={isOpenMenu} toggleMenu={toggleMenu}/>
+      <Menu/>
 
     </div>
 );

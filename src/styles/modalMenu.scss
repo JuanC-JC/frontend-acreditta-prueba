@@ -11,13 +11,16 @@
   transition: transform 0.3s;
   overflow-y: scroll;
   overflow-x: hidden;
-
   transform: translateX(-100%);
   z-index: 10;
-  
   background-color: var(--bg-color);
   box-shadow: 0px 5px 8px rgba(34, 34, 34, 0.535);
 
+
+
+  @media(min-width:1024px){
+    display: none;
+  }
 
   &--open{
     transform: translateX(0);

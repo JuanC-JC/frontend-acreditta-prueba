@@ -3,8 +3,23 @@
   padding-bottom: 20px;
   display:flex;
   flex-direction: column;
+
+
+
+  @media(min-width:1024px){
+    flex-direction: row;
+  }
+
 }
 
 .hero{
   background-color: var(--bg-color);
+  width: 100%;
+  height: fit-content;
+
+  @media(min-width: 1024px){
+    margin-left: 250px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
 }

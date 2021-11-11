@@ -4,7 +4,8 @@ import * as actions from "../actions";
 import Characters from "../components/Characters";
 import Pagination from "../components/Pagination";
 import Header from "../components/Header";
-import Menu from "../components/Menu";
+// import Menu from "../components/Menu";
+import SideMenu from "../components/menus/SideMenu";
 import '../styles/home.scss';
 
 function Home(props) {
@@ -24,10 +25,8 @@ function Home(props) {
   return (
     <div className="home">
 
-      {/* <Menu/> */}
-
-
       <Header/>
+      <SideMenu/>
 
       <div className="hero">
         <Characters />

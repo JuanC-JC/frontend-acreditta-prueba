@@ -4,11 +4,16 @@
   width: 100%;
   height: 50px;
   background-color: #282623;
-  // box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
   padding: 0 20px;
   position: fixed;
   justify-content: center;
   z-index: 5;
+
+  @media(min-width:1024px){
+    // position: relative;
+    display: none;
+  }
+
 
   &__logo{
     max-width: 150px; 
@@ -18,5 +23,6 @@
     position: absolute;
     right: 20px;
     cursor: pointer;
+
   }
 }

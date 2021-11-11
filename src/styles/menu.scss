@@ -4,6 +4,7 @@
 
   ul {
     list-style: none;
+    padding: 0;
   }
 
   
@@ -12,7 +13,6 @@
 .menu__subBlock {
   margin-top: 10px;
   cursor: pointer;
-  margin-left: 10px;
 
   &--open{
     &>.menu__infoOptionBlock{
@@ -21,6 +21,7 @@
     }
   }
 }
+
 
 .menu__optionBlock {
   margin-top: 10px;
@@ -48,6 +49,7 @@
   max-height: 0;
   overflow: hidden;
   transition: all .4s;
+  padding-left: 10px;
 }
 
 
