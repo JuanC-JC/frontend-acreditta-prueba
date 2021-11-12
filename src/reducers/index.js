@@ -5,7 +5,6 @@ import {
   filterData,
   setPage,
   paginationQuantity,
-  loadingData,
   sortOption,
   filterOption,
   setSearch
@@ -34,11 +33,6 @@ const reducer = (state, action) => {
           ...state.filters,
           filterOptions: appearanceFilters
         }
-      };
-    case loadingData:
-      return {
-        ...state,
-        loading: true,
       };
     case setPage:
       return {

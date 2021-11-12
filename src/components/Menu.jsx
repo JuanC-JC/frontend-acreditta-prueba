@@ -135,4 +135,8 @@ const mapStateToProps = (state)=>{
   })
 } 
 
-export default connect(mapStateToProps,actions)(Menu)
+const mapDispatchToProps = {
+  setSortOption : actions.setSortOption
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Menu)

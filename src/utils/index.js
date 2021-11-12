@@ -12,7 +12,12 @@ export const simulateQuery = () =>{
   })
 }
 
-
+/**
+ * Ordernar elementos por la propiedad name
+ * @param list array - lista de personajes
+ * @param orderType string 'desc' por defecto
+ * @return data nueva lista con los elementos ordenados
+ */
 export const sortByName = (list,orderType)=>{
   const data = [...list]
 
@@ -46,6 +51,12 @@ export const sortByName = (list,orderType)=>{
   return data
 }
 
+/**
+ * Ordernar elementos por una propiedad definida
+ * @param list array - lista de personajes
+ * @param parameter string - nombre de la propiedad base como filtro
+ * @return data nueva lista con los elementos ordenados
+ */
 export const sortByValues = (list,parameter,orderType) =>{
 
   const data = [...list]
@@ -81,11 +92,19 @@ export const sortByValues = (list,parameter,orderType) =>{
 
 }
 
+/**
+ * Aplicar los diferentes filtros 
+ * @param list array - lista de personajes
+ * @param filters object
+ * @param elementsPerPage number
+ * @param page number
+ * @return data una lista con un length = elementsPerPage 
+ */
 export const applyFilters = (list,filters,elementsPerPage, page)=>{
 
   let data = [...list]
 
-  
+
   //apply filters
   if(filters.orderOption.name){
     data = sortByValues(data,filters.orderOption.name,filters.orderOption.type)
@@ -128,11 +147,22 @@ export const applyFilters = (list,filters,elementsPerPage, page)=>{
   
 }
 
+/**
+ * Obtener una lista con unicos tipos de powerStats
+ * @param list array - lista de personajes
+ * @return data - lista de powerstats unicos
+ */
 export const getPowerstats = (list) =>{
 
   return [...new Set(Object.keys(list[0].powerstats))]
 }
 
+/**
+ * Obtener una lista con tipos unicos en base a un parametro de apariencia
+ * @param list array - lista de personajes
+ * @param parameter parametro de apariencia
+ * @return data - lista de tipos unicos
+ */
 export const getOptions = async (list,parameter) =>{
 
   const data = [...list]
@@ -147,43 +177,17 @@ export const getOptions = async (list,parameter) =>{
 
 }
 
-export const buildPagination = (pages,currentPage,pagination)=>{
 
-  //pagination are elements by index components
-
-  //pages, total of pages
-
-  //currentPage actually page in pagination
-
-  //if pages are minus than pagination example have 7 pages and the pagination has 10 elements, only returns 1 to 7
-  if( pages <= pagination){
-    return Array.from({length:  pages}, (_, i) => i +1)
-  }else{
-
-    let puntoInicial = 1
-
-    if(currentPage<= Math.ceil(pagination/2)){
-      puntoInicial = 1
-    }
-
-    else if(( pages-currentPage) > Math.floor(pagination/2)){
-      puntoInicial = currentPage - (Math.ceil(pagination/2)-1)
-    }
-    else{
-      puntoInicial =  pages - (pagination-1)
-    }
-
-    return Array.from({length: pagination}, (_, i) => i + puntoInicial )
-  }
-}
-
+/**
+ * Construccion de paginacion
+ * @param list array - lista de personajes
+ * @return objeto - { parametroApariencia: [...tipos unicos de apariencia para el parametro] }
+ */
 export const getAppearanceStats = (list)=>{
 
   const appearanceKeys = Object.keys(list[0].appearance).map(key=>([key,new Set()]))
 
   const stats = Object.fromEntries(appearanceKeys)
-
-  
 
   list.forEach(character=>{
     
@@ -203,4 +207,35 @@ export const getAppearanceStats = (list)=>{
 
 
   return stats
+}
+
+
+/**
+ * Construccion de paginacion
+ * @param pages number - cantidad maxima de paginas
+ * @param currentPage number - pagina base 
+ * @param pagination number - cantidad de elementos por bloque de paginacion 
+ * @return lista de numeros con la paginacion disponible
+ */
+ export const buildPagination = (pages,currentPage,pagination)=>{
+
+  if( pages <= pagination){
+    return Array.from({length:  pages}, (_, i) => i +1)
+  }else{
+
+    let puntoInicial = 1
+
+    if(currentPage<= Math.ceil(pagination/2)){
+      puntoInicial = 1
+    }
+
+    else if(( pages-currentPage) > Math.floor(pagination/2)){
+      puntoInicial = currentPage - (Math.ceil(pagination/2)-1)
+    }
+    else{
+      puntoInicial =  pages - (pagination-1)
+    }
+
+    return Array.from({length: pagination}, (_, i) => i + puntoInicial )
+  }
 }
