@@ -24,7 +24,7 @@ const initialState ={
   filteredPages: 0,
   filters:{
     search:null,
-    orderOption:{}, //order {name,type}
+    orderOption:{name:'',type:'asc'}, //order {name,type}
     filterOptions:{}, // filter
   },
 }

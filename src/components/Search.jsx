@@ -1,12 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { connect } from 'react-redux';
 import '../styles/search.scss'
+import * as actions from '../actions'
+import searchIcon from '../static/icons/search.svg'
 
-export default function Search ({handler}) {
-  
+function Search ({setSearchOption,applyFilterData}) {
+
+  const [searchState,setSearchState] = useState('')
+
+  const handlePressKey = (e) =>{
+    if(e.key === 'Enter'){ 
+      setSearchOption(searchState)
+      applyFilterData()
+    }
+  }
+
+  const handleSubmitSearch = ()=>{
+    setSearchOption(searchState)
+    applyFilterData()
+  }
+
+  const handleChange = (e)=>{
+    setSearchState(e.target.value)
+  }
+
     return (
-    <div className='search'>
-      <button onClick={handler} >Send</button>
-      <input placeholder="Search" type="text" />
-    </div>
-);
-};
+      <div className='search'>
+        <img className='search__button' onClick={handleSubmitSearch} src={searchIcon} alt="" />
+        {/* <button  >Send</button> */}
+        <input onKeyPress={handlePressKey} value={searchState} onChange={handleChange} placeholder="Search" type="text" />
+      </div>
+)};
+
+
+export default connect(null,actions)(Search)

@@ -12,7 +12,6 @@ function SubMenu (props) {
     setIsOpen(!isOpen)
   }
 
-
   const handleInput = (key,value,checked)=>{
 
     const filterOpt = {type:key,value,checked}
@@ -28,10 +27,11 @@ function SubMenu (props) {
 
       <div className="menu__infoOptionBlock">
         {
-          elements.map(opt=>(
-            <label style={{display:'block'}}>
+          elements.map((opt,index)=>(
+
+            <label className='checkBox' style={{display:'block'}}>
               <input onChange={(e)=>handleInput(title,opt,e.target.checked)} name={opt} type="checkbox" value={opt} />
-              {opt}
+              <span>{opt}</span>
             </label>
           ))
         }
@@ -39,6 +39,7 @@ function SubMenu (props) {
     </div>
 );
 };
+
 
 export default connect(null,actions)(SubMenu)
 

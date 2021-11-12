@@ -7,7 +7,8 @@ import {
   paginationQuantity,
   loadingData,
   sortOption,
-  filterOption
+  filterOption,
+  setSearch
 } from "../types";
 
 import { applyFilters, sortByValues,getPowerstats, getAppearanceStats } from "../utils";
@@ -16,9 +17,9 @@ const reducer = (state, action) => {
   switch (action.type) {
     case setData:
 
-    const appearanceOptions = getAppearanceStats(action.payload)
+      const appearanceOptions = getAppearanceStats(action.payload)
 
-    const appearanceFilters = Object.fromEntries(Object.keys(appearanceOptions).map(key=>[key,[]]))
+      const appearanceFilters = Object.fromEntries(Object.keys(appearanceOptions).map(key=>[key,[]]))
 
       return {
         ...state,
@@ -51,13 +52,25 @@ const reducer = (state, action) => {
         paginationQuantity: action.payload,
       };
     case sortOption:
+
       return{
         ...state,
         filters:{
           ...state.filters,
-          orderOption: action.payload
+          orderOption: {
+            ...state.filters.orderOption,
+            ...action.payload
+          }
         },
       };
+    case setSearch:
+      return({
+        ...state,
+        filters: {
+          ...state.filters,
+          search: action.payload
+        }
+      });
     case filterOption:
 
       const indexOption = state.filters.filterOptions[action.payload.type].indexOf(action.payload.value)

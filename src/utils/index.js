@@ -12,6 +12,40 @@ export const simulateQuery = () =>{
   })
 }
 
+
+export const sortByName = (list,orderType)=>{
+  const data = [...list]
+
+
+  data.sort((a,b)=>{
+    
+    const firstPair = a.name
+    const secondPair = b.name
+  
+    if(orderType === 'asc'){
+        
+      if(firstPair > secondPair){
+        return 1
+      }else if(firstPair < secondPair){
+        return -1
+      }else{
+        return 0
+      }
+    }else{
+      if(firstPair < secondPair){
+        return 1
+      }else if(firstPair > secondPair){
+        return -1
+      }else{
+        return 0
+      }
+  
+    }
+  })
+
+  return data
+}
+
 export const sortByValues = (list,parameter,orderType) =>{
 
   const data = [...list]
@@ -49,13 +83,16 @@ export const sortByValues = (list,parameter,orderType) =>{
 
 export const applyFilters = (list,filters,elementsPerPage, page)=>{
 
-  
   let data = [...list]
 
+  
   //apply filters
   if(filters.orderOption.name){
     data = sortByValues(data,filters.orderOption.name,filters.orderOption.type)
+  }else{
+    data = sortByName(data,filters.orderOption.type)
   }
+
 
 
   Object.entries(filters.filterOptions).forEach(filter=>{
@@ -69,10 +106,19 @@ export const applyFilters = (list,filters,elementsPerPage, page)=>{
 
   })
 
+
+  // data.filter()
+
+  // console.log(filters.search)
+  if(filters.search){
+
+    data = data.filter(c => c.name.toLowerCase().includes(filters.search.toLowerCase()))
+
+  }
   
   const lengthData = Math.ceil((data.length - 1) / elementsPerPage)
   //send data filtered only the currentPage
-  console.log(data.map(c=>c.appearance), lengthData)
+  // console.log(data.map(c=>c.appearance), lengthData)
   
   const init = (page * elementsPerPage) - elementsPerPage
   const filtered = data.splice(init,20)

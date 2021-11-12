@@ -4,12 +4,11 @@ import * as actions from "../actions";
 import Characters from "../components/Characters";
 import Pagination from "../components/Pagination";
 import Header from "../components/Header";
-// import Menu from "../components/Menu";
 import SideMenu from "../components/menus/SideMenu";
 import '../styles/home.scss';
 
 function Home(props) {
-  const { setSortData, setPaginationQuantity } = props;
+  const { setPaginationQuantity } = props;
 
   useEffect(() => {
 

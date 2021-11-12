@@ -5,22 +5,41 @@ import '../styles/menu.scss'
 import Search from './Search';
 import SubMenu from './menus/subMenu';
 
+import iconSortAsc from '../static/icons/sortAsc.svg'
+import iconSortDesc from '../static/icons/sortDesc.svg'
+
 function Menu (props) {
 
-  const {powerstatsOptions,filters,setSortOption,applyFilterData,toggleMenu,appearanceOptions} = props
+  const {filters,powerstatsOptions,setSortOption,applyFilterData,toggleMenu,appearanceOptions} = props
 
   const [powerOption, setPowerOption] = useState('')
 
   const [openOrderBlock,setOpenOrderBlock] = useState(false)
   const [openFilterBlock,setOpenFilterBlock] = useState(false)
+  const [typeOrder,setTypeOrder] = useState('asc')
 
   const handlePowerOption = (e) =>{
-    toggleMenu()
-    setPowerOption(e.target.getAttribute('name'))
-    setSortOption({
-      name:e.target.getAttribute('name'),
-      type:'desc'
-    })
+    
+    if(typeof toggleMenu === 'function'){
+      toggleMenu()
+    }
+
+    const nameOption = e.target.getAttribute('name')
+
+
+    if(nameOption === powerOption){
+      setPowerOption('')
+      setSortOption({
+        name: '',
+        type: typeOrder
+      })
+    }else{
+      setPowerOption(nameOption)
+      setSortOption({
+        name: nameOption,
+        type: typeOrder
+      })
+    }
     applyFilterData()
     
   }
@@ -33,20 +52,39 @@ function Menu (props) {
     setOpenFilterBlock(!openFilterBlock)
   }
 
+  const toggleTypeOrder = () =>{
+
+    setSortOption({
+      type: filters.orderOption.type === 'desc' ? 'asc' : 'desc'
+    })  
+
+    applyFilterData()
+  }
+
     return (
       <div className='menu'>
 
         <Search />
+        
+        <div className="menu__orderButton">
+          {filters.orderOption.type === 'desc' ? 'Descendente' : 'Ascendente'}
+          <img 
+                alt='' 
+                src={filters.orderOption.type === 'desc' ? iconSortDesc : iconSortAsc} 
+                className="menu__buttonOrderOption"
+                onClick={toggleTypeOrder}
+          />
+        </div>
 
         <div className={`menu__optionBlock ${openOrderBlock ? 'menu__optionBlock--open' : ''}`}>
-
-          <div className='menu__title' >
-            <div onClick={toggleOption} className="menu__titleText">Ordenamiento</div>
-            <div className="menu__buttonOrderOption">X</div>
+        
+          <div onClick={toggleOption}  className='menu__title' >
+            <div className="menu__titleText">Ordenamiento</div>
           </div>
           
 
           <div  className="menu__infoOptionBlock">
+           
             <ul>
               {
                 powerstatsOptions.map((option,index)=>{

@@ -3,10 +3,11 @@
   height: 100vh;
   position: fixed;
   background-color: var(--bg-color);
-  width: 250px;
+  width: 280px;
   z-index: 2;
   border: 1px solid #101316;
   padding: 20px;
+  overflow-y: scroll;
 
   h1{
     margin: 20px 0;

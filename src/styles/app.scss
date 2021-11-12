@@ -121,3 +121,96 @@ h1{
     }
   }
 }
+
+
+* {
+  // scroll-behavior: smooth;
+  // scrollbar-width: thin;
+  scrollbar-color: var(--dark-color) ;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--dark-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--text-color);
+  border-radius: 10px;
+}
+
+
+
+.checkBox{
+
+  // margin: 5px;
+  margin: 10px 0;
+  margin-left: 5px;
+  position: relative;
+
+
+
+  &:hover{
+    cursor: pointer;
+    span{
+      color: var(--border-main-color);
+
+      &::before{
+        border: 2px solid var(--border-main-color);
+      }
+    }
+    
+
+
+  }
+
+  span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &::before{
+
+      font-weight: bolder;
+      content: '';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+      border-radius: 2.5px;
+      width: 16px;
+      height: 16px;
+      color: white;      
+      border: 2px solid var(--text-color);
+      transition: all 0.1s;
+      margin-right: 10px;
+  
+    }
+  }
+
+
+  input{
+    display: none;
+
+    &:not(:checked) + span::before{
+      -webkit-transform: scale(1) rotate(0);
+      transform: scale(1) rotate(0);
+    }
+
+    &:checked{
+      &+span::before{
+          content: "\●";
+          color: white;
+          font-size: 12px;
+          -webkit-transform: scale(1) rotate(180deg);
+          transform: scale(1) rotate(180deg);
+    
+      }
+    }
+  }
+
+
+}
+

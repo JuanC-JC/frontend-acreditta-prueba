@@ -6,7 +6,8 @@ import {
   paginationQuantity,
   loadingData,
   filterOption,
-  sortOption
+  sortOption,
+  setSearch
 } from "../types";
 
 
@@ -39,6 +40,11 @@ export const applyFilterData = (payload) => ({
   type: filterData,
   payload,
 });
+
+export const setSearchOption = (payload) => ({
+  type:setSearch,
+  payload
+})
 
 export const setFilterOption = (payload) => ({
   type:filterOption,
