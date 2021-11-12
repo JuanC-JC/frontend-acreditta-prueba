@@ -4,7 +4,7 @@ import * as actions from '../../actions'
 
 function SubMenu (props) {
 
-  const {handleClick,title,elements,setFilterOption,applyFilterData} = props
+  const {title,elements,setFilterOption,applyFilterData} = props
 
   const [isOpen,setIsOpen] = useState(false)
 
@@ -42,6 +42,3 @@ function SubMenu (props) {
 
 
 export default connect(null,actions)(SubMenu)
-
-
-//para cada elemento de la lista

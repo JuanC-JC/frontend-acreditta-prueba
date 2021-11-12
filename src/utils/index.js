@@ -102,7 +102,11 @@ export const applyFilters = (list,filters,elementsPerPage, page)=>{
     const filterList = filter[1]
 
     if(filterList.length>0){
-      data = data.filter(character=>  filterList.includes(character.appearance[filterName]) )
+      if(filterName === 'height' || filterName === 'weight'){
+        data = data.filter(character=>  filterList.includes(character.appearance[filterName][0]) )
+      }else{
+        data = data.filter(character=>  filterList.includes(character.appearance[filterName]) )
+      }
     }
 
   })
@@ -186,8 +190,9 @@ export const getAppearanceStats = (list)=>{
     Object.keys(stats).forEach((stat)=>{
 
       if(!Array.isArray(character.appearance[stat])){
-        // stats[stat].add(character.appearance[stat][0])
         stats[stat].add(character.appearance[stat])
+      }else{
+        stats[stat].add(character.appearance[stat][0])
       }
     })
   })

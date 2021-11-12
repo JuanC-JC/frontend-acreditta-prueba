@@ -136,7 +136,3 @@ const mapStateToProps = (state)=>{
 } 
 
 export default connect(mapStateToProps,actions)(Menu)
-
-
-
-//APLICAR LOS FILTROS
