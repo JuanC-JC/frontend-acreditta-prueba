@@ -26,11 +26,19 @@ function Characters(props) {
   const { page } = useParams();
 
   useEffect(() => {
-    if (page && page <= pages) {
+
+    if(page > pages){
+      navigate('/1')
+      return
+    }
+
+    if (page ) {
       setCurrentPage(page);
     }else{
-      navigate('/1')
+      setCurrentPage(1)
     }
+
+
     applyFilterData()
 
   }, [navigate,page,pages,setCurrentPage,applyFilterData]);
