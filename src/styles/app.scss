@@ -9,6 +9,14 @@
   height:100vh;
   display: flex;
   flex-direction:column;
+
+  &.blurred{
+    // overflow-y: hidden;
+
+    .characters{
+      filter: blur(5px);
+    }
+  }
 }
 
 h1{
@@ -25,6 +33,7 @@ h1{
   align-items: center;
   justify-content: center;
   gap: 25px;
+
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fit, 230px);

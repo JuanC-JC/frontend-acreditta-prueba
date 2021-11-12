@@ -9,14 +9,13 @@
   padding-right: 20px;
   padding-left: 10px;
   overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 40px;
 
   &__button {
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
-    // width: 32 px;
-    // height: 28 px;
-    
+    background-position: center;    
     border: none;
     margin-left: 10 px;
     cursor: pointer;

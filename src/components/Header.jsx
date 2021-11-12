@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import menuBurger from '../static/icons/menuBurguer.png'
+import menuBurger from '../static/icons/menuBurguer.svg'
 
 import '../styles/header.scss'
 import FilterMenu from './menus/FilterMenu';
@@ -11,6 +11,8 @@ export default function Header () {
 
   const toggleMenu = () =>{
     setIsOpenMenu(!isOpenMenu)
+
+    document.querySelector('#root').classList.toggle('blurred')
   }
 
     return (

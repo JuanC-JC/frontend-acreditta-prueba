@@ -16,8 +16,8 @@ function Menu (props) {
 
   const [openOrderBlock,setOpenOrderBlock] = useState(false)
   const [openFilterBlock,setOpenFilterBlock] = useState(false)
-  // const [typeOrder,setTypeOrder] = useState('asc')
 
+  
   const handlePowerOption = (e) =>{
     
     if(typeof toggleMenu === 'function'){
@@ -51,6 +51,8 @@ function Menu (props) {
   }
 
   const toggleTypeOrder = () =>{
+
+    toggleMenu()
 
     setSortOption({
       type: filters.orderOption.type === 'desc' ? 'asc' : 'desc'
