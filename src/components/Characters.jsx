@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { simulateQuery } from "../utils";
 import * as actions from "../actions";
 import Card from "../components/card";
 import { useParams } from "react-router";
-import Pagination from "./Pagination";
 import { useNavigate } from "react-router";
+
+import '../styles/characters.scss'
 
 function Characters(props) {
 
@@ -18,7 +18,6 @@ function Characters(props) {
     loading,
     setErrorData,
     error,
-    setFilterData,
     applyFilterData,
     characters,
     pages
@@ -66,7 +65,7 @@ function Characters(props) {
       {loading ? (
         <h1>Loading</h1>
       ) : filteredData.length > 0 ? (
-        filteredData.map((character, index) => <Card key={index} data={character} />)
+        filteredData.map((character, index) => <Card key={`${character.name}__${index}`} data={character} />)
       ) : (
         <div>{error}</div>
       )}

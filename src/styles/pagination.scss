@@ -1,0 +1,49 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+  width: 100%;
+
+  &__button {
+    padding: 6px 10px;
+    background: var(--border-main-color);
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover{
+      opacity: 0.8;
+    }
+  }
+
+  .indexes {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: #fff;
+    text-align: center;
+
+    & > div {
+      cursor: pointer;
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+      padding: 5px;
+      width: 30px;
+      margin: 0 5px;
+      border-radius: 5px;
+
+      &.active {
+        background:  #0597ae;
+      }
+
+      &:hover {
+        background: var(--border-main-color);
+      }
+    }
+  }
+}

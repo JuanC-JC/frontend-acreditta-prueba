@@ -1,0 +1,16 @@
+.characters {
+  width: 95%;
+  margin: 0 auto;
+  display: grid;
+  min-height: calc(100vh - 100px);
+  grid-template-columns: repeat(auto-fit, 260px);
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, 230px);
+    gap: 20px;
+  }
+}

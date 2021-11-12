@@ -17,7 +17,7 @@ function Menu (props) {
   const [openOrderBlock,setOpenOrderBlock] = useState(false)
   const [openFilterBlock,setOpenFilterBlock] = useState(false)
 
-  
+
   const handlePowerOption = (e) =>{
     
     if(typeof toggleMenu === 'function'){
@@ -52,7 +52,9 @@ function Menu (props) {
 
   const toggleTypeOrder = () =>{
 
-    toggleMenu()
+    if(typeof toggleMenu === 'function'){
+      toggleMenu()
+    }
 
     setSortOption({
       type: filters.orderOption.type === 'desc' ? 'asc' : 'desc'
@@ -66,13 +68,13 @@ function Menu (props) {
 
         <Search />
         
-        <div className="menu__orderButton">
+        <div onClick={toggleTypeOrder} className="menu__orderButton">
           {filters.orderOption.type === 'desc' ? 'Descendente' : 'Ascendente'}
           <img 
                 alt='' 
                 src={filters.orderOption.type === 'desc' ? iconSortDesc : iconSortAsc} 
                 className="menu__buttonOrderOption"
-                onClick={toggleTypeOrder}
+
           />
         </div>
 
@@ -106,8 +108,8 @@ function Menu (props) {
             
 
         <div className={`menu__optionBlock ${openFilterBlock ? 'menu__optionBlock--open' : ''}`}>
-          <div className='menu__title' >
-            <div onClick={toogleFilter} className="menu__titleText">Filtros</div>
+          <div onClick={toogleFilter} className='menu__title' >
+            <div  className="menu__titleText">Filtros</div>
           </div>
 
           <div className="menu__infoOptionBlock">

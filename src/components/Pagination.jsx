@@ -4,6 +4,8 @@ import { buildPagination } from "../utils";
 import * as actions from '../actions'
 import {useNavigate} from 'react-router-dom'
 
+import '../styles/pagination.scss'
+
 function Pagination(props) {
   const { currentPage, pages ,paginationQuantity} = props;
 
