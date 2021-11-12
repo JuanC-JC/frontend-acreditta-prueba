@@ -36,4 +36,18 @@
   &__name {
     margin: 0 auto;
   }
+
+  &__status{
+    width: 90px;
+    background-color: rebeccapurple;
+    height: 5px;
+
+    &.bad{
+      background-color: var(--error-color);
+    }
+
+    &.good{
+      background-color: var(--border-main-color);
+    }
+  }
 }
