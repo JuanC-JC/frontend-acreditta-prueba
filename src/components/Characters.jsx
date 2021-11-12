@@ -20,6 +20,7 @@ function Characters(props) {
     error,
     setFilterData,
     applyFilterData,
+    characters,
     pages
   } = props;
 
@@ -36,11 +37,23 @@ function Characters(props) {
   }, [navigate,page,pages,setCurrentPage,applyFilterData]);
 
   useEffect(() => {
+
     const fetchData = async () => {
       try {
-        const data = await simulateQuery();
-        addData(data);
-        applyFilterData()
+
+        if(characters.length === 0){
+          const res = await fetch('https://shrouded-tor-30746.herokuapp.com/characters')
+          const data = await res.json()
+
+          window.sessionStorage.setItem('charactersData',JSON.stringify(data))
+
+          addData(data);
+          applyFilterData()
+        }else{
+          addData(characters);
+          applyFilterData()
+        }
+        
       } catch (e) {
         setErrorData(e);
       }

@@ -29,7 +29,7 @@ function SubMenu (props) {
         {
           elements.map((opt,index)=>(
 
-            <label className='checkBox' style={{display:'block'}}>
+            <label key={index} className='checkBox' style={{display:'block'}}>
               <input onChange={(e)=>handleInput(title,opt,e.target.checked)} name={opt} type="checkbox" value={opt} />
               <span>{opt}</span>
             </label>

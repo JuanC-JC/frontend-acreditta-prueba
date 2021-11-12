@@ -16,7 +16,7 @@ function Menu (props) {
 
   const [openOrderBlock,setOpenOrderBlock] = useState(false)
   const [openFilterBlock,setOpenFilterBlock] = useState(false)
-  const [typeOrder,setTypeOrder] = useState('asc')
+  // const [typeOrder,setTypeOrder] = useState('asc')
 
   const handlePowerOption = (e) =>{
     
@@ -31,13 +31,11 @@ function Menu (props) {
       setPowerOption('')
       setSortOption({
         name: '',
-        type: typeOrder
       })
     }else{
       setPowerOption(nameOption)
       setSortOption({
         name: nameOption,
-        type: typeOrder
       })
     }
     applyFilterData()
@@ -112,9 +110,9 @@ function Menu (props) {
 
           <div className="menu__infoOptionBlock">
               {
-                Object.entries(appearanceOptions).map(stat=>{
+                Object.entries(appearanceOptions).map((stat,index)=>{
                   return(
-                    <SubMenu title={stat[0]} elements={stat[1]}/>
+                    <SubMenu key={index} title={stat[0]} elements={stat[1]}/>
                   )
                 })
               }

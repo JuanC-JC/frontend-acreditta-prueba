@@ -90,6 +90,7 @@ export const applyFilters = (list,filters,elementsPerPage, page)=>{
   if(filters.orderOption.name){
     data = sortByValues(data,filters.orderOption.name,filters.orderOption.type)
   }else{
+    
     data = sortByName(data,filters.orderOption.type)
   }
 

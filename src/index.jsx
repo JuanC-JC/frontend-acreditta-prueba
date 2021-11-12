@@ -8,10 +8,11 @@ import App from './App';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
+let dataStore = window.sessionStorage.getItem('charactersData')  ? JSON.parse(window.sessionStorage.getItem('charactersData')) : []
 
 
 const initialState ={
-  characters:[],
+  characters: dataStore,
   pages:0,
   powerstatsOptions:[],
   currentPage:1,
