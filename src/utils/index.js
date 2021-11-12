@@ -108,9 +108,6 @@ export const applyFilters = (list,filters,elementsPerPage, page)=>{
   })
 
 
-  // data.filter()
-
-  // console.log(filters.search)
   if(filters.search){
 
     data = data.filter(c => c.name.toLowerCase().includes(filters.search.toLowerCase()))
@@ -118,8 +115,7 @@ export const applyFilters = (list,filters,elementsPerPage, page)=>{
   }
   
   const lengthData = Math.ceil((data.length - 1) / elementsPerPage)
-  //send data filtered only the currentPage
-  // console.log(data.map(c=>c.appearance), lengthData)
+
   
   const init = (page * elementsPerPage) - elementsPerPage
   const filtered = data.splice(init,20)
@@ -203,7 +199,3 @@ export const getAppearanceStats = (list)=>{
 
   return stats
 }
-
-
-
-// console.log(getAppearanceStats(data))
