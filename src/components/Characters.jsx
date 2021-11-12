@@ -27,21 +27,16 @@ function Characters(props) {
 
   useEffect(() => {
 
-    if(page > pages){
-      navigate('/1')
-      return
-    }
-
-    if (page ) {
+    if (page) {
       setCurrentPage(page);
     }else{
       setCurrentPage(1)
     }
-
-
+    
     applyFilterData()
 
-  }, [navigate,page,pages,setCurrentPage,applyFilterData]);
+
+  }, [page,pages,setCurrentPage,applyFilterData]);
 
   useEffect(() => {
 
@@ -55,6 +50,7 @@ function Characters(props) {
           window.sessionStorage.setItem('charactersData',JSON.stringify(data))
 
           addData(data);
+
           applyFilterData()
         }else{
           addData(characters);
